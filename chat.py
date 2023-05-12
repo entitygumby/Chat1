@@ -8,9 +8,12 @@ from langchain.llms import OpenAI
 import config
 import logging
 import streamlit as st
+import os
 
-# importing credentials
-OPEN_API_KEY == st.secrets["OPEN_API_KEY"]
+#Creating the chatbot interface
+st.set_page_config(
+    layout="wide"
+)
 
 # Initialize logging with the specified configuration
 logging.basicConfig(
@@ -30,7 +33,7 @@ def answer(prompt: str) -> str:
     LOGGER.info(f"Start answering based on prompt: {prompt}.")
 
     # load persisted database from disk, and use it as normal
-    embeddings = OpenAIEmbeddings(openai_api_key=OPEN_API_KEY)
+    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["OPEN_API_KEY"])
     db = Chroma(persist_directory=config.PERSIST_DIR, embedding_function=embeddings)
 
     # Create a prompt template using a template from the config module and input variables
@@ -43,7 +46,7 @@ def answer(prompt: str) -> str:
     # used to combine QA_WITH_SOURCES functionality with Retrieval Sources Chain
     qa_chain = load_qa_with_sources_chain(
         llm=OpenAI(
-            openai_api_key=OPEN_API_KEY,
+            openai_api_key=st.secrets["OPEN_API_KEY"],
             model_name="gpt-3.5-turbo",
             temperature=0,
             max_tokens=300,

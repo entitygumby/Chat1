@@ -2,10 +2,6 @@ import chat
 import streamlit as st
 from streamlit_chat import message
 
-#Creating the chatbot interface
-st.set_page_config(
-    layout="wide"
-)
 
 # Storing the chat
 if 'generated' not in st.session_state:
