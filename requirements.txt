@@ -5,10 +5,5 @@ langchain==0.0.129
 chromadb
 openai
 unstructured[local-inference]
-torch
 tesseract
 #git+https://github.com/facebookresearch/detectron2.git
-tiktoken
-faiss-cpu
-python-dotenv
-altair==5.0.0rc1
