@@ -26,7 +26,6 @@ def main():
 
     if user_input:
         output = chat.answer(user_input)
-#        message(avatar_style=)
         # store the output
         st.session_state.past.append(user_input)
         st.session_state.generated.append(output)
