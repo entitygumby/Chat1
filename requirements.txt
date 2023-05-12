@@ -11,3 +11,4 @@ tesseract
 tiktoken
 faiss-cpu
 python-dotenv
+altair==5.0.0rc1
