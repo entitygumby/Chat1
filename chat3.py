@@ -2,15 +2,18 @@
 from langchain.vectorstores import Chroma
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.prompts import PromptTemplate
-from langchain.chains import RetrievalQA, RetrievalQAWithSourcesChain
+from langchain.chains import RetrievalQAWithSourcesChain
 from langchain.chains.qa_with_sources import load_qa_with_sources_chain
 from langchain.llms import OpenAI
 
 import config
 import logging
-import credentials
+import streamlit as st
 
-OPEN_API_KEY = credentials.OPEN_API_KEY
+#Creating the chatbot interface
+st.set_page_config(
+    layout="wide"
+)
 
 # Initialize logging with the specified configuration
 logging.basicConfig(
@@ -31,7 +34,7 @@ def answer(prompt: str) -> str:
     LOGGER.info(f"Start answering based on prompt: {prompt}.")
 
     # load persisted database from disk, and use it as normal
-    embeddings = OpenAIEmbeddings(openai_api_key=credentials.OPEN_API_KEY)
+    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["OPEN_API_KEY"])
     db = Chroma(persist_directory=config.PERSIST_DIR, embedding_function=embeddings)
 
     # Create a prompt template using a template from the config module and input variables
@@ -44,7 +47,7 @@ def answer(prompt: str) -> str:
     # used to combine QA_WITH_SOURCES functionality with Retrieval Sources Chain
     qa_chain = load_qa_with_sources_chain(
         llm=OpenAI(
-            openai_api_key=credentials.OPEN_API_KEY,
+            openai_api_key=st.secrets["OPEN_API_KEY"],
             model_name="gpt-3.5-turbo",
             temperature=0,
             max_tokens=300,

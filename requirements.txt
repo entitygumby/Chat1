@@ -1,9 +1,10 @@
 streamlit_chat==0.0.2.2
 nltk==3.8.1
-streamlit==1.19.0
+streamlit==1.22.0
 langchain==0.0.129
 chromadb
 openai
 unstructured[local-inference]
 tesseract
 #git+https://github.com/facebookresearch/detectron2.git
+altair==4.0

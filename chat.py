@@ -8,7 +8,7 @@ from langchain.llms import OpenAI
 import config
 import logging
 import streamlit as st
-import os
+
 
 #Creating the chatbot interface
 st.set_page_config(

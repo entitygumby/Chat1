@@ -8,11 +8,12 @@ from langchain.prompts import PromptTemplate
 
 import config
 import logging
-import credentials
 import streamlit as st
-import os
 
-OPEN_API_KEY = credentials.OPEN_API_KEY
+#Creating the chatbot interface
+st.set_page_config(
+    layout="wide"
+)
 
 # Initialize logging with the specified configuration
 logging.basicConfig(
@@ -33,15 +34,16 @@ def answer(prompt: str) -> str:
     LOGGER.info(f"Start answering based on prompt: {prompt}.")
 
     # load persisted database from disk, and use it as normal
-    embeddings = OpenAIEmbeddings(openai_api_key=OPEN_API_KEY)
+    embeddings = OpenAIEmbeddings(openai_api_key=st.secrets["OPEN_API_KEY"])
     db = Chroma(persist_directory=config.PERSIST_DIR, embedding_function=embeddings)
 
     # Create a prompt template using a template from the config module and input variables
     # representing the context and question.
-    prompt_template = PromptTemplate(template=config.prompt_template, input_variables=["context", "question"])
+    prompt_template = PromptTemplate(template=config.prompt_template, input_variables=["summaries", "question"])
 
     # Initiate retriever
     retriever = db.as_retriever(search_type="similarity", search_kwargs={"k": config.k})
+
 
       # test prompts for conversational Retrieval Chain
     _template = """Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question.
@@ -60,7 +62,7 @@ def answer(prompt: str) -> str:
 
     # Initialise Conversational Retrieval Chain
     qa = ConversationalRetrievalChain.from_llm(
-        llm=OpenAI(openai_api_key=OPEN_API_KEY, model_name="gpt-3.5-turbo", temperature=0),
+        llm=OpenAI(openai_api_key=st.secrets["OPEN_API_KEY"], model_name="gpt-3.5-turbo", temperature=0),
         retriever=retriever,
         condense_question_prompt=CONDENSE_QUESTION_PROMPT,
         qa_prompt=QA_PROMPT,
