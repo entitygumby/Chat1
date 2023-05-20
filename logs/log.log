@@ -1,1 +1,20 @@
-test file
+test file2023-05-19 11:35:50,976 - INFO - Start answering based on prompt: what is atrial fibrillation.
+2023-05-19 11:35:51,034 - INFO - Anonymized telemetry enabled. See https://docs.trychroma.com/telemetry for more information.
+2023-05-19 11:35:51,038 - INFO - Running Chroma using direct local API.
+2023-05-19 11:35:51,063 - WARNING - Using embedded DuckDB with persistence: data will be stored in: vectorstore
+2023-05-19 11:35:51,437 - INFO - Successfully imported ClickHouse Connect C data optimizations
+2023-05-19 11:35:51,459 - INFO - Successfully import ClickHouse Connect C/Numpy optimizations
+2023-05-19 11:35:51,603 - INFO - Using python library for writing JSON byte strings
+2023-05-19 11:35:54,813 - INFO - loaded in 11925 embeddings
+2023-05-19 11:35:54,815 - INFO - loaded in 1 collections
+2023-05-19 11:35:54,816 - INFO - collection with name langchain already exists, returning existing collection
+2023-05-19 11:35:54,820 - INFO - The top 4 chunks are considered to answer the user's query.
+2023-05-19 11:36:26,458 - INFO - error_code=None error_message='That model is currently overloaded with other requests. You can retry your request, or contact us through our help center at help.openai.com if the error persists. (Please include the request ID 2590ce6dded65b7b6eaefe115f352a7d in your message.)' error_param=None error_type=server_error message='OpenAI API error received' stream_error=False
+2023-05-19 11:36:26,462 - WARNING - Retrying langchain.llms.openai.completion_with_retry.<locals>._completion_with_retry in 4.0 seconds as it raised RateLimitError: That model is currently overloaded with other requests. You can retry your request, or contact us through our help center at help.openai.com if the error persists. (Please include the request ID 2590ce6dded65b7b6eaefe115f352a7d in your message.).
+2023-05-19 11:36:43,308 - INFO - The returned answer is: Atrial fibrillation is a type of arrhythmia where the heart beats irregularly and often too fast. It is defined as "an irregular heart rhythm characterized by rapid and disorganized atrial electrical activity resulting in an irregular ventricular response" (ESC Guidelines, page 373). It is diagnosed through electrocardiogram (ECG) and symptoms such as palpitations, shortness of breath, and fatigue. Atrial fibrillation can lead to complications such as stroke and heart failure. 
+
+SOURCE: doc/ESC 2020 Atrial Fibrillation.pdf
+
+Is there anything else I can help you with?
+2023-05-19 11:36:43,310 - INFO - Answering module over.
+2023-05-19 11:37:31,528 - INFO - Persisting DB to disk, putting it in the save folder: vectorstore

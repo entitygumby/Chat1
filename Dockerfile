@@ -1,9 +1,8 @@
 FROM python:3.9
 COPY . /app
 WORKDIR /app
-RUN pip install -r requirements.txt
+# optional: RUN /usr/local/bin/python -m pip install --upgrade pip
+RUN pip3 install -r requirements.txt
 EXPOSE 80
-RUN mkdir ~/.streamlit
 WORKDIR /app
-ENTRYPOINT ["streamlit", "run"]
-CMD ["app3.py"]
+CMD ["python3", "-m", "streamlit", "run", "app3.py"]
